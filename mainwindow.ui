@@ -108,7 +108,7 @@ border-style:inset;
    <widget class="QSlider" name="horizontalSlider">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>90</y>
       <width>121</width>
       <height>16</height>
@@ -249,9 +249,17 @@ border-radius:10px;</string>
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/res/Icons/ColorPicker.png);
+      <string notr="true">#pushButton_2{
+background-image: url(:/res/Icons/ColorPicker.png);
  background-repeat:norepeat;
-background-position:center;</string>
+background-position:center;
+border: 3px solid blue;
+border-radius: 10px;
+border-style: outset;
+}
+#pushButton_2:pressed{
+border-style: inset;
+}</string>
      </property>
      <property name="text">
       <string/>
@@ -284,6 +292,9 @@ font-size:16px;
 }
 #ApplyButton:pressed{
 border-style: inset;
+}
+#ApplyButton:hover{
+background-color: blue;
 }</string>
      </property>
      <property name="text">
@@ -387,6 +398,9 @@ border-style: inset;
      </property>
      <property name="tickPosition">
       <enum>QSlider::NoTicks</enum>
+     </property>
+     <property name="tickInterval">
+      <number>10</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_shadesRange">

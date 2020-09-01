@@ -55,7 +55,7 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     this->zoom=value;
 }
 
-void MainWindow::on_pushButton_2_clicked() //color to replace
+void MainWindow::on_pushButton_2_clicked() // color to replace
 {
     QColor color = QColorDialog::getColor(Qt::white,this,"Choose color");
     QString style = QString("background-color: rgb(%1, %2, %3);").
@@ -89,6 +89,7 @@ void MainWindow::on_ApplyButton_clicked()
         msgBox.exec();
         return;
     }
+    this->previousImage=this->image;
     int r,g,b, r_diff, g_diff, b_diff;
     int height=this->image.height();
     ui->progressBar->setMaximum(height);
@@ -118,7 +119,7 @@ void MainWindow::on_ApplyButton_clicked()
         }
         ui->progressBar->setValue(y);
     }
-    this->previousImage=this->image;
+
     setImage(image);
     ui->statusbar->showMessage("Done");
 }
@@ -131,5 +132,10 @@ void MainWindow::on_Slider_Shades_valueChanged(int value)
 
 void MainWindow::on_Button_undo_clicked()
 {
-    setImage(previousImage);
+    if(previousImage.isNull()==false){
+        setImage(previousImage);
+    }
+    else {
+        ui->statusbar->showMessage("Previous state is not exist");
+    }
 }
