@@ -139,3 +139,30 @@ void MainWindow::on_Button_undo_clicked()
         ui->statusbar->showMessage("Previous state is not exist");
     }
 }
+
+void MainWindow::on_Slider_darker_valueChanged(int value)
+{
+    int c; // 1 - darker; 0 - lighter
+    if(value > dark_light) c=1;
+    else c=0;
+    dark_light=value;
+
+    for(int y=1;y<image.height();y++) // Y
+    {
+        for(int x=1;x<this->image.width()-2;x++) // X
+        {
+            QColor col =this->image.pixelColor(x,y);
+            if(c==1)
+            {
+                QColor newColor = col.darker(110);
+                image.setPixelColor(x,y,newColor);
+            }
+            else {
+                QColor newColor = col.lighter(110);
+                image.setPixelColor(x,y,newColor);
+            }
+            dark_light=value;
+        }
+    }
+    setImage(image);
+}

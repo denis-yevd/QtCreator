@@ -167,7 +167,7 @@ border-style:inset;
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>90</y>
       <width>51</width>
       <height>17</height>
@@ -181,7 +181,7 @@ border-style:inset;
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>210</y>
+      <y>320</y>
       <width>201</width>
       <height>331</height>
      </rect>
@@ -382,7 +382,7 @@ background-color: blue;
       <number>10</number>
      </property>
      <property name="pageStep">
-      <number>50</number>
+      <number>10</number>
      </property>
      <property name="tracking">
       <bool>true</bool>
@@ -446,12 +446,61 @@ border-style: inset;
      <string/>
     </property>
    </widget>
+   <widget class="QSlider" name="Slider_darker">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>160</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="minimum">
+     <number>50</number>
+    </property>
+    <property name="maximum">
+     <number>150</number>
+    </property>
+    <property name="singleStep">
+     <number>10</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="tickPosition">
+     <enum>QSlider::TicksAbove</enum>
+    </property>
+    <property name="tickInterval">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>160</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Brightness</string>
+    </property>
+   </widget>
    <zorder>pushButton</zorder>
    <zorder>graphicsView</zorder>
    <zorder>horizontalSlider</zorder>
    <zorder>label_2</zorder>
    <zorder>groupBox</zorder>
    <zorder>Button_undo</zorder>
+   <zorder>Slider_darker</zorder>
+   <zorder>label_5</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

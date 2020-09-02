@@ -19,6 +19,7 @@ public:
     Ui::MainWindow *ui;
     int zoom=10;
     int shadesRande=0;
+    int dark_light=100;
     QImage image;
     QImage previousImage;
     QColor selectedColor;
@@ -32,6 +33,7 @@ private slots:
     void on_ApplyButton_clicked();
     void on_Slider_Shades_valueChanged(int value);
     void on_Button_undo_clicked();
+    void on_Slider_darker_valueChanged(int value);
 };
 #endif // MAINWINDOW_H
 
