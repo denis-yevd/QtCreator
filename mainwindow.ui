@@ -502,6 +502,33 @@ border-style: inset;
      <string>Brightness</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Button_Save">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>10</y>
+      <width>60</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#Button_Save{
+	background-image: url(:/res/Icons/save.png);
+background-position:center;
+ background-repeat:norepeat;
+border: 5px solid lightblue;
+border-radius: 10px;
+border-style: outset;
+font-size:16px;
+}
+#Button_Save:pressed{
+border-style:inset;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>pushButton</zorder>
    <zorder>graphicsView</zorder>
    <zorder>horizontalSlider</zorder>
@@ -509,6 +536,7 @@ border-style: inset;
    <zorder>groupBox</zorder>
    <zorder>Slider_darker</zorder>
    <zorder>label_5</zorder>
+   <zorder>Button_Save</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

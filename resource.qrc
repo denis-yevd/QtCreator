@@ -4,6 +4,6 @@
         <file>Icons/ColorPicker.png</file>
         <file>Icons/undo.png</file>
         <file>Icons/open.png</file>
-        <file>Icons/fit.png</file>
+        <file>Icons/save.png</file>
     </qresource>
 </RCC>

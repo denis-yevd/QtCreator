@@ -181,3 +181,18 @@ void MainWindow::FitImage()
     else newImage = image.scaledToWidth(ui->graphicsView->width());
     setImage(newImage);
 }
+
+void MainWindow::on_Button_Save_clicked()
+{
+    if(!image.isNull())
+    {
+        QString fileName= QFileDialog::getSaveFileName(this,
+                                                       QCoreApplication::applicationDirPath(),
+                                                       "Save_image.jpg",
+                                                       "Image Files (*.png *.jpg *.bmp)");
+        if (!fileName.isNull())
+        {
+            image.save(fileName);
+        }
+    }
+}
