@@ -20,6 +20,7 @@ public:
     int zoom=10;
     int shadesRande=0;
     int dark_light=100;
+    float scale=1;
     QImage image;
     QImage previousImage;
     QColor selectedColor;
@@ -34,6 +35,8 @@ private slots:
     void on_Slider_Shades_valueChanged(int value);
     void on_Button_undo_clicked();
     void on_Slider_darker_valueChanged(int value);
+    void on_Button_Fit_clicked();
+    void FitImage();
 };
 #endif // MAINWINDOW_H
 

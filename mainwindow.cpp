@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<customscene.h>
+#include<math.h>
 #include<QFile>
 #include<QFileDialog>
 #include<QColorDialog>
@@ -29,7 +30,9 @@ void MainWindow::on_pushButton_clicked()
     QUrl url=QFileDialog::getOpenFileUrl(); // open image
     QString path = url.path();
     QImage image(path);
-    setImage(image);
+    this->image=image;
+    FitImage();
+    ui->statusbar->showMessage("The image has opened.");
 }
 
 void MainWindow::setImage(QImage image){
@@ -47,10 +50,12 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     if(this->zoom>value)
     {
         ui->graphicsView->scale(0.8,0.8);
+        scale*=0.2;
     }
     else
     {
         ui->graphicsView->scale(1.2,1.2);
+        scale*=1.2;
     }
     this->zoom=value;
 }
@@ -165,4 +170,14 @@ void MainWindow::on_Slider_darker_valueChanged(int value)
         }
     }
     setImage(image);
+}
+
+void MainWindow::FitImage()
+{
+    int h = this->image.height();
+    int w = this->image.width();
+    QImage newImage;
+    if(h>w) newImage = image.scaledToHeight(ui->graphicsView->height());
+    else newImage = image.scaledToWidth(ui->graphicsView->width());
+    setImage(newImage);
 }

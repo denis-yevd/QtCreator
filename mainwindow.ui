@@ -55,9 +55,9 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>20</y>
-      <width>51</width>
-      <height>41</height>
+      <y>10</y>
+      <width>60</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -77,7 +77,7 @@
 	background-image: url(:/res/Icons/open.png);
 background-position:center;
  background-repeat:norepeat;
-border: 4px solid blue;
+border: 5px solid lightblue;
 border-radius: 10px;
 border-style: outset;
 font-size:16px;
@@ -108,7 +108,7 @@ border-style:inset;
    <widget class="QSlider" name="horizontalSlider">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>140</x>
       <y>90</y>
       <width>121</width>
       <height>16</height>
@@ -137,10 +137,10 @@ border-style:inset;
      <set>Qt::ImhNone</set>
     </property>
     <property name="minimum">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="maximum">
-     <number>20</number>
+     <number>10</number>
     </property>
     <property name="singleStep">
      <number>1</number>
@@ -149,10 +149,10 @@ border-style:inset;
      <number>1</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>5</number>
     </property>
     <property name="sliderPosition">
-     <number>10</number>
+     <number>5</number>
     </property>
     <property name="tracking">
      <bool>true</bool>
@@ -160,8 +160,17 @@ border-style:inset;
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+    <property name="invertedControls">
+     <bool>false</bool>
+    </property>
     <property name="tickPosition">
-     <enum>QSlider::NoTicks</enum>
+     <enum>QSlider::TicksAbove</enum>
+    </property>
+    <property name="tickInterval">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -183,11 +192,11 @@ border-style:inset;
       <x>80</x>
       <y>320</y>
       <width>201</width>
-      <height>331</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(90, 140, 100);
+     <string notr="true">background-color: rgb(110, 160,120);
 border-radius:10px;</string>
     </property>
     <property name="title">
@@ -197,7 +206,7 @@ border-radius:10px;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>296</y>
+       <y>310</y>
        <width>181</width>
        <height>23</height>
       </rect>
@@ -277,10 +286,10 @@ border-style: inset;
     <widget class="QPushButton" name="ApplyButton">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>110</x>
        <y>260</y>
        <width>71</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -416,40 +425,40 @@ background-color: blue;
       <string>10</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="Button_undo">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Undo</string>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#Button_undo{
+    <widget class="QPushButton" name="Button_undo">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>250</y>
+       <width>60</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Undo</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#Button_undo{
 background-image: url(:/res/Icons/undo.png);
 background-position:center;
  background-repeat:norepeat;
-border: 4px solid blue;
+border: 5px solid lightblue;
 border-radius: 10px;
 border-style: outset;
 }
 #Button_undo:pressed{
 border-style: inset;
 }</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QSlider" name="Slider_darker">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>140</x>
       <y>160</y>
       <width>121</width>
       <height>20</height>
@@ -498,7 +507,6 @@ border-style: inset;
    <zorder>horizontalSlider</zorder>
    <zorder>label_2</zorder>
    <zorder>groupBox</zorder>
-   <zorder>Button_undo</zorder>
    <zorder>Slider_darker</zorder>
    <zorder>label_5</zorder>
   </widget>

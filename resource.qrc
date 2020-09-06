@@ -1,8 +1,9 @@
 <RCC>
     <qresource prefix="/res">
-        <file>soft-grunge-vector-background.jpg</file>
+        <file>soft-grunge-background.jpg</file>
         <file>Icons/ColorPicker.png</file>
         <file>Icons/undo.png</file>
         <file>Icons/open.png</file>
+        <file>Icons/fit.png</file>
     </qresource>
 </RCC>
