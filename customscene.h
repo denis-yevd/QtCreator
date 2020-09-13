@@ -14,14 +14,14 @@ public:
     explicit CustomScene(MainWindow *mw);
     ~CustomScene();
     bool pressed=false;
-    void DrawCircle(int x, int y);
+    int x, y;
 
 signals:
     // The signal of transmit the coordinates of the mouse position
     void signalTargetCoordinate(QPointF point);
 
 private:
-    // The function, which made tracking the mouse
+
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent (QGraphicsSceneMouseEvent *event);

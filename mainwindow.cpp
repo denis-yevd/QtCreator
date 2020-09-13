@@ -67,7 +67,7 @@ void MainWindow::on_pushButton_2_clicked() // color to replace
             arg(color.red()).
             arg(color.green()).
             arg(color.blue());
-    ui->pushButton_2->setStyleSheet(style);
+    ui->frame_ForReplace->setStyleSheet(style);
     this->replaceableColor=color;
 }
 

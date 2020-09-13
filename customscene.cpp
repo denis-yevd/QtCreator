@@ -4,6 +4,8 @@
 #include<mainwindow.h>
 #include<string>
 #include<QDebug>
+#include<thread>
+#include<future>
 using namespace std;
 
 CustomScene::CustomScene(MainWindow *wind) :
@@ -18,29 +20,33 @@ CustomScene::~CustomScene()
 
 void CustomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    int x=event->scenePos().rx();
-    int y=event->scenePos().ry();
-
-    if(x>0&&y>0&&x<this->width()&&y<this->height())
+    if(mw->ui->toolButton_Pipette->isChecked())
     {
-        QColor color = this->mw->image.pixelColor(x,y);
-        QString style=QString("background-color:rgb(%1,%2,%3);").
-                arg(color.red()).
-                arg(color.green()).
-                arg(color.blue());
-        this->mw->ui->cursorColor->setStyleSheet(style);
+        x=event->scenePos().rx();
+        y=event->scenePos().ry();
 
-        if(pressed)
+        if(x>0&&y>0&&x<this->width()&&y<this->height())
         {
-            DrawCircle(x,y);
+            QColor color = this->mw->image.pixelColor(x,y);
+            QString style=QString("background-color:rgb(%1,%2,%3);").
+                    arg(color.red()).
+                    arg(color.green()).
+                    arg(color.blue());
+            this->mw->ui->selectedColor->setStyleSheet(style);
         }
+    }
+
+    if(pressed)
+    {
+        this->addEllipse(x-15,y-15,30,30,QPen(Qt::blue),QBrush(Qt::blue));
     }
 }
 
 void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     this->pressed = true;
-    QColor col=this->mw->image.pixelColor(event->scenePos().x(),event->scenePos().y());
+    QColor col=this->mw->image.pixelColor(event->scenePos().x(),
+                                          event->scenePos().y());
     QString style=QString("background-color:rgb(%1,%2,%3);").
             arg(col.red()).
             arg(col.green()).
@@ -52,9 +58,6 @@ void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void CustomScene::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event)
 {
     this->pressed = false;
-}
-
-void CustomScene::DrawCircle(int x, int y)
-{
-    this->addEllipse(x-15,y-15,30,30,QPen(Qt::blue),QBrush(Qt::blue));
+    if(mw->ui->toolButton_Pipette->isChecked())
+    mw->ui->toolButton_Pipette->setChecked(false);
 }
