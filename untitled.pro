@@ -17,14 +17,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     customscene.cpp \
+    form.cpp \
+    glwidget.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    paintermy.cpp
 
 HEADERS += \
     customscene.h \
-    mainwindow.h
+    form.h \
+    glwidget.h \
+    mainwindow.h \
+    paintermy.h
 
 FORMS += \
+    form.ui \
     mainwindow.ui
 
 # Default rules for deployment.

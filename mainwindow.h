@@ -37,6 +37,7 @@ private slots:
     void on_Slider_darker_valueChanged(int value);
     void FitImage();
     void on_Button_Save_clicked();
+    void on_actionDraw_image_triggered();
 };
 #endif // MAINWINDOW_H
 

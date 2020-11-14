@@ -9,6 +9,7 @@
 #include<iostream>
 #include<QDebug>
 #include <QMessageBox>
+#include "form.h"
 
 using namespace std;
 
@@ -60,7 +61,7 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
     this->zoom=value;
 }
 
-void MainWindow::on_pushButton_2_clicked() // color to replace
+void MainWindow::on_pushButton_2_clicked() //color to replace changing
 {
     QColor color = QColorDialog::getColor(Qt::white,this,"Choose color");
     QString style = QString("background-color: rgb(%1, %2, %3);").
@@ -71,7 +72,7 @@ void MainWindow::on_pushButton_2_clicked() // color to replace
     this->replaceableColor=color;
 }
 
-void MainWindow::on_ApplyButton_clicked()
+void MainWindow::on_ApplyButton_clicked() //replace color
 {
     if(this->image.isNull())
     {
@@ -195,4 +196,10 @@ void MainWindow::on_Button_Save_clicked()
             image.save(fileName);
         }
     }
+}
+
+void MainWindow::on_actionDraw_image_triggered() //Open new window
+{
+    Form *f=new Form();
+    f->show();
 }
