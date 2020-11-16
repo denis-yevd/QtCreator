@@ -14,7 +14,7 @@ class Form : public QWidget
 {
     Q_OBJECT
 private:
-    PainterMy painer_my;
+    PainterMy *painer_my;
 
 public:
     explicit Form(QWidget *parent = nullptr);

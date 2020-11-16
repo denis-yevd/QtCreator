@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <qgridlayout.h>
 #include "glwidget.h"
+#include <QComboBox>
 
 Form::Form(QWidget *parent) :
     QWidget(parent),
@@ -10,11 +11,18 @@ Form::Form(QWidget *parent) :
 {
     ui->setupUi(this);
     QGridLayout *layout=new QGridLayout ();
-    GLWidget *gl=new GLWidget (&painer_my, this);
+    QComboBox *cmbx=new QComboBox(this);
+    QStringList lst={"5","10","30","50","70"};
+    cmbx->addItems(lst);
+    layout->addWidget(cmbx);
+
+    GLWidget *gl=new GLWidget(this);
     layout->addWidget(gl);
+    setLayout(layout);
 }
 
 Form::~Form()
 {
     delete ui;
+    delete painer_my;
 }

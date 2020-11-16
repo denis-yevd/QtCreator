@@ -9,7 +9,6 @@ PainterMy::PainterMy()
 
 void PainterMy::paint(QPainter *painter, QMouseEvent *event)
 {
-    painter->setBackground(Qt::white);
     painter->setPen(circlePen);
     painter->setBrush(Qt::blue);
     painter->drawEllipse(event->x(),event->y(),20,20);
