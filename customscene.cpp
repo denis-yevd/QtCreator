@@ -1,11 +1,11 @@
 #include "customscene.h"
 #include "ui_mainwindow.h"
-#include<QMainWindow>
-#include<mainwindow.h>
-#include<string>
-#include<QDebug>
-#include<thread>
-#include<future>
+#include <QMainWindow>
+#include <mainwindow.h>
+#include <string>
+#include <QDebug>
+#include <thread>
+#include <future>
 using namespace std;
 
 CustomScene::CustomScene(MainWindow *wind) :

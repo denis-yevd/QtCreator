@@ -2,26 +2,27 @@
 #include <qdebug.h>
 #include <QBrush>
 #include <QPen>
+//#include <thread>
 
-GLWidget::GLWidget(QWidget *parent):QWidget(parent)
+GLWidget::GLWidget(QWidget *parent):QOpenGLWidget(parent)
 {
     setMouseTracking(true);
-    setGeometry(0,20,700,500);
-    pix_map=QPixmap(700, 500);
+    pix_map=QPixmap(parent->width(), parent->height());
     mouse_pressed=false;
+    pen_width=5;
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
     mouse_pressed=true;
-    paint(event->pos());
+    prev_point=event->pos();
 }
 
 void GLWidget::paintEvent(QPaintEvent *)
 {
-    paintr.begin(this);
-        paintr.drawPixmap(0,0,pix_map);
-        paintr.end();
+        painter_f.begin(this);
+        painter_f.drawPixmap(0,0,pix_map);
+        painter_f.end();
 }
 
 void GLWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -33,17 +34,18 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if(mouse_pressed)
     {
-        paint(event->pos());
+        paintr.begin(&pix_map);
+        QPen pen=QPen(Qt::red);
+        pen.setWidth(pen_width);
+        paintr.setPen(pen);
+        paintr.drawLine(prev_point,event->pos());
+        paintr.end();
+        update();
+        prev_point=event->pos();
     }
 }
 
-void GLWidget::paint(QPoint point)
+void GLWidget::setCurrentText(const QString &text)
 {
-    paintr.begin(&pix_map);
-    paintr.setPen(QPen{Qt::blue, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin});
-    paintr.setBrush(Qt::blue);
-    paintr.drawEllipse(point.x(), point.y(), 10, 10);
-    paintr.end();
-    repaint(point.x(),point.y(),10,10);
-    //update();
+    pen_width=text.toInt();
 }

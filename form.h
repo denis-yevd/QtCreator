@@ -22,6 +22,8 @@ public:
 
     Ui::Form *ui;
 
+private slots:
+void setCurrentText(const QString text);
 };
 
 
