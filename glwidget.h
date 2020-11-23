@@ -3,8 +3,8 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include "paintermy.h"
 #include <QMouseEvent>
+#include <qpainter.h>
 class GLWidget : public QOpenGLWidget
 {
     Q_OBJECT
@@ -13,6 +13,7 @@ public:
     QPainter paintr;
     QPainter painter_f;
     QPixmap  pix_map;
+    QColor color_pen;
     bool mouse_pressed;
     int pen_width;
 

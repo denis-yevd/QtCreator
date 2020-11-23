@@ -20,15 +20,13 @@ SOURCES += \
     form.cpp \
     glwidget.cpp \
     main.cpp \
-    mainwindow.cpp \
-    paintermy.cpp
+    mainwindow.cpp
 
 HEADERS += \
     customscene.h \
     form.h \
     glwidget.h \
-    mainwindow.h \
-    paintermy.h
+    mainwindow.h
 
 FORMS += \
     form.ui \

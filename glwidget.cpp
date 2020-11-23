@@ -2,6 +2,8 @@
 #include <qdebug.h>
 #include <QBrush>
 #include <QPen>
+//#include <GL/gl.h>
+//#include <GL/glu.h>
 //#include <thread>
 
 GLWidget::GLWidget(QWidget *parent):QOpenGLWidget(parent)
@@ -9,7 +11,8 @@ GLWidget::GLWidget(QWidget *parent):QOpenGLWidget(parent)
     setMouseTracking(true);
     pix_map=QPixmap(parent->width(), parent->height());
     mouse_pressed=false;
-    pen_width=5;
+    pen_width=3;
+    color_pen=Qt::red;
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
@@ -35,8 +38,10 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     if(mouse_pressed)
     {
         paintr.begin(&pix_map);
-        QPen pen=QPen(Qt::red);
+        QPen pen=QPen(color_pen);
         pen.setWidth(pen_width);
+        pen.setStyle(Qt::PenStyle::SolidLine);
+        pen.setCapStyle(Qt::PenCapStyle::RoundCap);
         paintr.setPen(pen);
         paintr.drawLine(prev_point,event->pos());
         paintr.end();
@@ -45,7 +50,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void GLWidget::setCurrentText(const QString &text)
+void GLWidget::setCurrentText(const QString &text) //comboBox
 {
     pen_width=text.toInt();
 }

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QMouseEvent>
-#include "paintermy.h"
+#include "glwidget.h"
 
 namespace Ui {
 class Form;
@@ -13,17 +13,16 @@ class Form;
 class Form : public QWidget
 {
     Q_OBJECT
-private:
-    PainterMy *painer_my;
 
 public:
     explicit Form(QWidget *parent = nullptr);
     ~Form();
+    GLWidget *gl_widget;
 
     Ui::Form *ui;
 
 private slots:
-void setCurrentText(const QString text);
+void ButtonColorClicked();
 };
 
 
