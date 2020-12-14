@@ -12,34 +12,8 @@ Form::Form(QWidget *parent) :
     ui(new Ui::Form)
 {
     ui->setupUi(this);
-    QVBoxLayout *layout_v=new QVBoxLayout(this);
-    QHBoxLayout *layout_h=new QHBoxLayout(this);
-    layout_h->setAlignment(Qt::AlignLeft);
-
-    QLabel *label=new QLabel(this);
-    label->setText("thickness");
-
-    QComboBox *cmbx=new QComboBox(this);
-    QStringList lst={"3","3","10","30","50"};
-    cmbx->addItems(lst);
-
-    GLWidget *gl=new GLWidget(this);
-
-    QPushButton *button_color=new QPushButton(this);
-    button_color->setStyleSheet("background-image: url(:/res/Icons/ColorPicker.png);"
-                                "background-repeat:norepeat;"
-                                "background-position:center;");
-    button_color->setFixedSize(QSize(50,50));
-
-    layout_h->addWidget(label);
-    layout_h->addWidget(cmbx);
-    layout_h->addWidget(button_color);
-    layout_v->addLayout(layout_h);
-    layout_v->addWidget(gl);
-    this->gl_widget=gl;
-    connect(cmbx, SIGNAL(currentTextChanged(const QString)), gl, SLOT(setCurrentText(const QString)));
-    connect(button_color, SIGNAL(clicked()), SLOT(ButtonColorClicked()));
-    setLayout(layout_v);
+    this->gl_widget=new GLWidget(this);
+    ui->verticalLayout->addWidget(gl_widget);
 }
 
 Form::~Form()
@@ -47,8 +21,61 @@ Form::~Form()
     delete ui;
 }
 
-void Form::ButtonColorClicked()
+void Form::on_toolButton_Lines_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->toolButton_rectangle->setChecked(false);
+        ui->toolButton_Circles->setChecked(false);
+    }
+    gl_widget->curv_pressed=checked;
+}
+
+void Form::on_Button_PenColor_clicked()
+{
+    QColor col = QColorDialog::getColor(Qt::white,this,"choose color");
+    gl_widget->pen_my.setColor(col);
+}
+
+void Form::on_Button_BrushColor_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::white,this,"choose color");
-    gl_widget->color_pen=color;
+    gl_widget->brush_my.setColor(color);
+}
+
+void Form::on_comboBox_currentTextChanged(const QString &arg1)
+{
+    gl_widget->pen_my.setWidth(arg1.toInt());
+}
+
+void Form::on_toolButton_rectangle_toggled(bool checked)
+{
+    if(checked)
+    {
+        ui->toolButton_Lines->setChecked(false);
+        ui->toolButton_Circles->setChecked(false);
+    }
+    gl_widget->rect_pressed=checked;
+}
+
+void Form::on_toolButton_Circles_toggled(bool checked)
+{
+    if(checked)
+    {
+        gl_widget->circl_pressed=true;
+        ui->toolButton_Lines->setChecked(false);
+        ui->toolButton_rectangle->setChecked(false);
+    }
+    gl_widget->circl_pressed=checked;
+}
+
+void Form::resizeEvent(QResizeEvent*e)
+{
+    gl_widget->pix_map=gl_widget->pix_map.scaled(e->size());
+}
+
+void Form::on_pushButton_clicked()
+{
+    gl_widget->pix_map.fill(Qt::black);
+    gl_widget->update();
 }

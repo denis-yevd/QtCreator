@@ -20,10 +20,16 @@ public:
     GLWidget *gl_widget;
 
     Ui::Form *ui;
+void resizeEvent(QResizeEvent*e);
 
 private slots:
-void ButtonColorClicked();
+void on_toolButton_Lines_toggled(bool checked);
+void on_Button_PenColor_clicked();
+void on_Button_BrushColor_clicked();
+void on_comboBox_currentTextChanged(const QString &arg1);
+void on_toolButton_rectangle_toggled(bool checked);
+void on_toolButton_Circles_toggled(bool checked);
+void on_pushButton_clicked();
 };
-
 
 #endif // FORM_H

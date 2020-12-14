@@ -35,11 +35,6 @@ void CustomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             this->mw->ui->selectedColor->setStyleSheet(style);
         }
     }
-
-    if(pressed)
-    {
-        this->addEllipse(x-15,y-15,30,30,QPen(Qt::blue),QBrush(Qt::blue));
-    }
 }
 
 void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent *event)

@@ -10,21 +10,25 @@ class GLWidget : public QOpenGLWidget
     Q_OBJECT
 public:
     QPoint prev_point;
+    QPoint start_point;
     QPainter paintr;
     QPainter painter_f;
+    QPen pen_my;
+    QBrush brush_my;
     QPixmap  pix_map;
-    QColor color_pen;
+    QRect prev_rect;
+    QPainterPath path_my;
     bool mouse_pressed;
-    int pen_width;
+    bool rect_pressed;
+    bool circl_pressed;
+    bool curv_pressed;
 
     GLWidget(QWidget *parent);
+    void setRect(QRect r);
     void paintEvent(QPaintEvent *) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
-
-public slots:
-    void setCurrentText(const QString &text);
 };
 
 #endif // GLWIDGET_H

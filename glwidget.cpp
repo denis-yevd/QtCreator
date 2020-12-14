@@ -11,14 +11,24 @@ GLWidget::GLWidget(QWidget *parent):QOpenGLWidget(parent)
     setMouseTracking(true);
     pix_map=QPixmap(parent->width(), parent->height());
     mouse_pressed=false;
-    pen_width=3;
-    color_pen=Qt::red;
+    curv_pressed=false;
+    rect_pressed=false;
+    circl_pressed=false;
+    pen_my.setColor(Qt::red);
+    pen_my.setWidth(3);
+    pen_my.setStyle(Qt::PenStyle::SolidLine);
+    pen_my.setCapStyle(Qt::PenCapStyle::RoundCap);
+    brush_my.setColor(Qt::blue);
+    pix_map.fill(Qt::white);
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
     mouse_pressed=true;
     prev_point=event->pos();
+    start_point=event->pos();
+    if(curv_pressed)
+    path_my=QPainterPath(event->pos());
 }
 
 void GLWidget::paintEvent(QPaintEvent *)
@@ -37,20 +47,50 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if(mouse_pressed)
     {
-        paintr.begin(&pix_map);
-        QPen pen=QPen(color_pen);
-        pen.setWidth(pen_width);
-        pen.setStyle(Qt::PenStyle::SolidLine);
-        pen.setCapStyle(Qt::PenCapStyle::RoundCap);
-        paintr.setPen(pen);
-        paintr.drawLine(prev_point,event->pos());
-        paintr.end();
-        update();
+        if(rect_pressed)
+        {
+            paintr.begin(&pix_map);
+            paintr.setPen(pen_my);
+            paintr.setBrush(brush_my);
+            if(!prev_rect.isEmpty())
+            {
+                paintr.eraseRect(prev_rect);
+            }
+            QRect rect=QRect(start_point, event->pos());
+            rect=rect.normalized();
+            prev_rect=rect;
+            paintr.drawRect(rect);
+            paintr.end();
+            update();
+        }
+
+        if(curv_pressed)
+        {
+            paintr.begin(&pix_map);
+            paintr.setPen(pen_my);
+            paintr.setBrush(brush_my);
+            path_my.lineTo(event->pos());
+            paintr.drawPath(path_my);
+            paintr.end();
+            update();
+        }
+
+        if(circl_pressed)
+        {
+            paintr.begin(&pix_map);
+            paintr.setPen(pen_my);
+            paintr.setBrush(brush_my);
+            if(!prev_rect.isEmpty())
+            {
+                paintr.eraseRect(prev_rect);
+            }
+            QRect rect=QRect(start_point, event->pos());
+            rect=rect.normalized();
+            prev_rect=rect;
+            paintr.drawEllipse(rect);
+            paintr.end();
+            update();
+        }
         prev_point=event->pos();
     }
-}
-
-void GLWidget::setCurrentText(const QString &text) //comboBox
-{
-    pen_width=text.toInt();
 }
