@@ -72,10 +72,11 @@ void Form::on_toolButton_Circles_toggled(bool checked)
 void Form::resizeEvent(QResizeEvent*e)
 {
     gl_widget->pix_map=gl_widget->pix_map.scaled(e->size());
+    gl_widget->update();
 }
 
-void Form::on_pushButton_clicked()
+void Form::on_pushButton_clicked() //Clear
 {
-    gl_widget->pix_map.fill(Qt::black);
+    gl_widget->pix_map.fill(Qt::white);
     gl_widget->update();
 }

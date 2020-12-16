@@ -124,15 +124,21 @@ border-style:inset;
            <height>60</height>
           </size>
          </property>
+         <property name="baseSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
          <property name="title">
           <string/>
          </property>
          <widget class="QComboBox" name="comboBox">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>150</width>
+            <x>90</x>
+            <y>10</y>
+            <width>41</width>
             <height>25</height>
            </rect>
           </property>
@@ -187,7 +193,7 @@ border-style:inset;
          <widget class="QLabel" name="label">
           <property name="geometry">
            <rect>
-            <x>40</x>
+            <x>0</x>
             <y>10</y>
             <width>81</width>
             <height>17</height>

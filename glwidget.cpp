@@ -19,6 +19,7 @@ GLWidget::GLWidget(QWidget *parent):QOpenGLWidget(parent)
     pen_my.setStyle(Qt::PenStyle::SolidLine);
     pen_my.setCapStyle(Qt::PenCapStyle::RoundCap);
     brush_my.setColor(Qt::blue);
+    brush_my.setStyle(Qt::SolidPattern);
     pix_map.fill(Qt::white);
 }
 
@@ -68,7 +69,6 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
         {
             paintr.begin(&pix_map);
             paintr.setPen(pen_my);
-            paintr.setBrush(brush_my);
             path_my.lineTo(event->pos());
             paintr.drawPath(path_my);
             paintr.end();
@@ -91,6 +91,5 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
             paintr.end();
             update();
         }
-        prev_point=event->pos();
     }
 }
